@@ -1,0 +1,10 @@
+<h1>Employees' List</h1>
+
+<%@employees.each do |employee|%>
+    <div style="margin-bottom:16px">
+        <h3>
+             <%= employee.id%> <%=employee.name%>
+        </h3>
+        <p>Position: <span><%=employee.position%></span></p>
+    </div>
+<%end%>
