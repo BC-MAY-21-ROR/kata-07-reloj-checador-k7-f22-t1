@@ -35,6 +35,7 @@ The attendance web app must meet the following reuqirements:
     - Feedback to employee on successful/failed registration
 
 ## Requerimientos no-funcionales
+
 - Calidad
   - Utilizar estilo de código definido por la comunidad (apoyarse en Rubocop)
   - Pruebas unitarias
@@ -49,6 +50,7 @@ The attendance web app must meet the following reuqirements:
     - Por ejemplo puedes utilizar Bootsrap junto con [bootstrap_form](https://github.com/bootstrap-ruby/bootstrap_form) para tus formularios
 
 ## Tecnologías
+
 - Ruby on Rails en el backend
 - PostgreSQL como base de datos principal
 - CSS: libertad para utilizar cuaquier framework o librería, preferentemente SASS
@@ -57,14 +59,17 @@ The attendance web app must meet the following reuqirements:
 - Framework para pruebas [Rspec](https://rspec.info/) ó [Minitest](https://github.com/seattlerb/minitest)
 
 ## Entregable
-- Código fuente en Github 
+
+- Código fuente en Github
   - Debe incluir README con información sobre como configurar el proyecto
   - Los commits de Git deben ser significativos
 - Demo de la App correndo en heroku o similar
 - Libertad para utilizar cualquier diseño, imágenes, etc, que considere necesarios y apropiados
 
 ## Setup
+
 En [este elnace](setup/README.md) se describen los pasos necesarios para ejecutar/probar este proyecto, así como los integrantes de este equipo
 
 ## Enlaces
+
 [Encuentra aquí una lista completa de recursos de ayuda](https://brightcoder.gitbook.io/handbook/ruby-on-rails)
