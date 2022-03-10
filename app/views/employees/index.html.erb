@@ -6,5 +6,9 @@
              <%= employee.id%> <%=employee.name%>
         </h3>
         <p>Position: <span><%=employee.position%></span></p>
+
+        <%= link_to 'Edit', edit_employee_path(employee) %>        
+        
+        <%= link_to 'Delete', employee_path(employee) %>
     </div>
 <%end%>

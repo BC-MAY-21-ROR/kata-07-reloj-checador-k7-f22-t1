@@ -8,7 +8,23 @@ class EmployeesController < ApplicationController
     end
 
     def create
-    Employee.create name: params['name'], position: params["position"], email:["email"], private_number:["private_number"]
-    redirect_to action: :index
+        Employee.create name: params['name'], position: params["position"], email:["email"], private_number:["private_number"]
+        redirect_to action: :index
+    end
+
+    def edit
+        @employee = Employee.find(params['id'])
+    end
+
+    def update
+        employee = Employee.find(params['id'])
+        employee.update name: params['name'], position: params["position"], email:["email"], private_number:["private_number"]
+        redirect_to action: :index
+    end
+
+    def show
+        employee = Employee.find(params['id'])
+        employee.update position: "Desactive"
+        redirect_to action: :index
     end
 end
