@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_08_233900) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_12_002110) do
+  create_table "admins", force: :cascade do |t|
+    t.string "email"
+    t.string "name"
+    t.string "password"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "branches", force: :cascade do |t|
     t.string "name"
     t.string "address"
@@ -23,8 +31,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_08_233900) do
     t.string "name"
     t.string "position"
     t.integer "private_number"
+    t.integer "branch_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["branch_id"], name: "index_employees_on_branch_id"
   end
 
+  create_table "records", force: :cascade do |t|
+    t.integer "employee_id"
+    t.datetime "check_in"
+    t.datetime "check_out"
+    t.integer "hours"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employee_id"], name: "index_records_on_employee_id"
+  end
+
+  add_foreign_key "employees", "branches"
+  add_foreign_key "records", "employees"
 end
