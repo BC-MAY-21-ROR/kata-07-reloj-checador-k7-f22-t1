@@ -5,6 +5,7 @@ class CreateEmployees < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :position
       t.integer :private_number 
+      t.integer :status
       t.timestamps
     end
   end
