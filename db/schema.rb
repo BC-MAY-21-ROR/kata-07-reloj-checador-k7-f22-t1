@@ -42,25 +42,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_14_210822) do
     t.string "name"
     t.integer "role_id"
     t.integer "private_number"
-<<<<<<< HEAD
     t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "records", force: :cascade do |t|
-    t.bigint "employee_id"
-=======
-    t.integer "branch_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["branch_id"], name: "index_employees_on_branch_id"
-    t.index ["role_id"], name: "index_employees_on_role_id"
-  end
-
-  create_table "records", force: :cascade do |t|
     t.integer "employee_id"
->>>>>>> master
     t.datetime "check_in"
     t.datetime "check_out"
     t.integer "hours"
@@ -71,14 +59,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_14_210822) do
 
   create_table "roles", force: :cascade do |t|
     t.string "description"
+    t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-<<<<<<< HEAD
-=======
   add_foreign_key "employees", "branches"
   add_foreign_key "employees", "roles"
->>>>>>> master
   add_foreign_key "records", "employees"
 end
