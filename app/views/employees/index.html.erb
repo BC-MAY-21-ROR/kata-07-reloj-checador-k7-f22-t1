@@ -1,12 +1,39 @@
 <h1>Employees' List</h1>
-
-<%@employees.each do |employee|%>
-  <div style="margin-bottom:16px">
-    <h3>
-      <%= employee.id%> <%=employee.name%>
-    </h3>
-    <p>Position: <span><%=employee.position%></span></p>
-      <%= link_to 'Edit', edit_employee_path(employee) %>
-      <%= link_to 'Delete', employee_path(employee) %>
+<div class="container">
+  <div class="row m-5">
+    <div class="input-group col me-5">
+      <input type="text" class="input-text form-control col-3 box" placeholder="  Search Employee"/>
+      <div class="input-group-append">
+        <button class="btn btn-light">Search</button>
+      </div>
+    </div>
+    <%= link_to '+ Add employee', new_employee_path, class:"btn btn-primary col-2 box ms-5"%>
   </div>
-<%end%>
+  <table class="table table-light table-hover box">
+    <thead>
+      <tr>
+        <th class="text-end">#</th>
+        <th>Name</th>
+        <th class="text-center">Branch</th>
+        <th class="text-center">Position</th>
+        <th class="text-center">E-mail</th>
+        <th class="text-center">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%@employees.each do |employee|%>
+        <%= content_tag :tr, :style => (employee.status == 0? "color:gray": "") do%>
+          <th class="text-end"><%=employee.id%></th>
+          <td><%=employee.name%></td>
+          <td class="text-center"><%=employee.branch%></td>
+          <td class="text-center"><%=employee.position%></td>
+          <td class="text-center"><%=employee.email%></td>
+          <td class="text-center">
+            <%= link_to 'Edit', edit_employee_path(employee), class: "btn btn-primary box" %>
+            <%= link_to 'Delete', employee_path(employee),  class: "btn btn-danger box" %>
+          </td>
+        <%end%>
+      <%end%>
+    </tbody>
+  </table>
+</div>

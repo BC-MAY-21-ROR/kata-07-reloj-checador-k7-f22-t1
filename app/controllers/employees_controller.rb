@@ -10,8 +10,8 @@ class EmployeesController < ApplicationController
   end
 
   def create
-    Employee.create name: params['name'], position: params['position'], email: ['email'],
-                    private_number: ['private_number']
+    Employee.create name: params[:name], position: params[:position], email: params[:email], 
+                    branch: params['branch'], private_number: [:private_number], status: 1
     redirect_to action: :index
   end
 
@@ -21,14 +21,14 @@ class EmployeesController < ApplicationController
 
   def update
     employee = Employee.find(params['id'])
-    employee.update name: params['name'], position: params['position'], email: ['email'],
-                    private_number: ['private_number']
+    employee.update name: params['name'], position: params['position'], email: params['email'],
+                    private_number: ['private_number'], branch: params['branch']
     redirect_to action: :index
   end
 
   def show
     employee = Employee.find(params['id'])
-    employee.update position: 'Desactive'
+    employee.update status: 0
     redirect_to action: :index
   end
 end

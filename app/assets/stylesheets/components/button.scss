@@ -1,0 +1,9 @@
+.btn{
+    min-width: 72px;
+}
+.input-group-append{
+    .btn{
+        box-shadow: $shadow;
+        border-radius: 0% $rounded $rounded 0%;
+    }
+}

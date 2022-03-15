@@ -1,7 +1,11 @@
-// Entry point for your Sass build
+// < yarn build:css --watch > to compile
 @import "application.bootstrap.scss";
 @import "variables.sass.scss";
 @import "button_colors.sass.scss";
+@import './components/box.scss';
+@import './components/input_text.scss';
+@import './components/button.scss';
+@import './employees/index.scss';
 
 //body
 body {
