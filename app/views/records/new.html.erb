@@ -1,0 +1,20 @@
+<!-- inside app/views/home/index.html.erb -->
+<div class="container">
+  <div class="vh-100 row d-flex align-items-center ">
+    <div class="col-6">
+      Reloj
+    </div>
+    <div class="col-6">
+      <%= form_for @record do%>
+        <div class="form-group">
+          <label class="label">Private Number</label>
+          <input type="number" placeholder="Example: 123456"/>
+          <p>Put your private number and press validate button to check in or check out.</p>
+        </div>
+        <div class="d-grid gap-2 col-6 mx-auto">
+          <button type="button" class="btn btn-success btn-lg">Validate</button>
+        </div>
+      <% end%>
+    </div>
+  </div>
+</div>
