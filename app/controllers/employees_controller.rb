@@ -10,19 +10,22 @@ class EmployeesController < ApplicationController
   end
 
   def create
-    Employee.create name: params[:name], position: params[:position], email: params[:email], 
-                    branch: params['branch'], private_number: [:private_number], status: 1
+    Employee.create name: params[:employee][:name], position: params[:employee][:position], 
+                    email: params[:employee][:email], branch: params['branch'], 
+                    private_number: params[:employee][:private_number], status: 1
     redirect_to action: :index
   end
 
   def edit
     @employee = Employee.find(params['id'])
+    puts @employee.private_number
   end
 
   def update
     employee = Employee.find(params['id'])
-    employee.update name: params['name'], position: params['position'], email: params['email'],
-                    private_number: ['private_number'], branch: params['branch']
+    employee.update(name: params[:employee][:name], position: params[:employee][:position], 
+                    email: params[:employee][:email], branch: params['branch'], 
+                    private_number: params[:employee][:private_number])
     redirect_to action: :index
   end
 
