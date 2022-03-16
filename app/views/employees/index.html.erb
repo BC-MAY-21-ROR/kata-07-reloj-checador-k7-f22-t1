@@ -22,11 +22,11 @@
     </thead>
     <tbody>
       <%@employees.each do |employee|%>
-        <%= content_tag :tr, :style => (employee.status == 0? "color:gray": "") do%>
+        <%= content_tag :tr, :style => (employee.status ? "" : "color:gray") do%>
           <th class="text-end"><%=employee.id%></th>
           <td><%=employee.name%></td>
-          <td class="text-center"><%=employee.branch%></td>
-          <td class="text-center"><%=employee.position%></td>
+          <td class="text-center"><%=employee.branch.name%></td>
+          <td class="text-center"><%=employee.role.description%></td>
           <td class="text-center"><%=employee.email%></td>
           <td class="text-center">
             <%= link_to 'Edit', edit_employee_path(employee), class: "btn btn-primary box" %>

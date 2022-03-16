@@ -46,7 +46,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_14_210822) do
     t.bigint "employee_id"
     t.datetime "check_in"
     t.datetime "check_out"
+<<<<<<< HEAD
     t.decimal "hours"
+=======
+    t.integer "hours"
+>>>>>>> Refactor employees_controller methods using the new database
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["employee_id"], name: "index_records_on_employee_id"
