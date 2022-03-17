@@ -4,7 +4,7 @@ class CreateRecords < ActiveRecord::Migration[7.0]
       t.belongs_to :employee, foreign_key: true
       t.datetime :check_in
       t.datetime :check_out
-      t.integer :hours
+      t.decimal :hours
       t.timestamps
     end
   end
