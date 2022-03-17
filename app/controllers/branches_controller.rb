@@ -15,6 +15,10 @@ class BranchesController < ApplicationController
     @branch = Branch.new
   end
 
+  def search
+    @branches = Branch.where("name LIKE ?", "%#{params["name"]}%") else branches = Branch.all end
+  end
+
   # GET /branches/1/edit
   def edit
   end
