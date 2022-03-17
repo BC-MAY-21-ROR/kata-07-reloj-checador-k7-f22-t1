@@ -1,14 +1,36 @@
-<p style="color: green"><%= notice %></p>
+<p class="alert alert-success"><%= notice %></p>
 
-<h1>Branches</h1>
+<div class="container">
 
-<div id="branches">
-  <% @branches.each do |branch| %>
-    <%= render branch %>
-    <p>
-      <%= link_to "Show this branch", branch %>
-    </p>
-  <% end %>
+<div class="d-flex align-items-center rounded-pill bg-success">
+<input class="" placeholder="Search branch">
+<i class="bi bi-search"></i>
 </div>
 
-<%= link_to "New branch", new_branch_path %>
+
+<%= link_to "New branch", new_branch_path, class: 'btn btn-primary' %>
+
+
+<table class="table table-hover text-center">
+ <thead>
+    <tr>
+      <th scope="col"># Branch</th>
+      <th scope="col">Branch name</th>
+      <th scope="col">Address</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% num = 0 %>
+  <% @branches.each do |branch| %>
+    <tr>
+      <th scope="row"><%= num = num + 1 %></th>
+      <td><%= branch.name %></td>
+      <td><%= branch.address %></td>
+      <td><%= link_to "Details", branch, class: 'btn btn-success' %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+</div>
