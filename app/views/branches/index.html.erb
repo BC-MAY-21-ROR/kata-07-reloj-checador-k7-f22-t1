@@ -2,10 +2,11 @@
 
 <div class="container">
  <div class="row">
-   <form class="col-md-3" action="/search">
+
+   <form id="search_form" class="col-md-3" action="/search">
      <input class="form-control" type="search" name="q" placeholder="Search Branch" aria-label="Search">
    </form> 
-    <button class="btn btn-success col-md-1" type="submit"> <i class="bi bi-search"></i></button>
+    <button form="search_form" class="btn btn-success col-md-1" type="submit"> <i class="bi bi-search"></i></button>
     <div class="d-flex justify-content-end">
       <%= link_to "New branch", new_branch_path, class: 'btn btn-primary col-md-2 bi bi-plus shadow' %>
     </div>

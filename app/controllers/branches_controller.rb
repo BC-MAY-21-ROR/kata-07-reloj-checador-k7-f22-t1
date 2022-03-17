@@ -18,8 +18,8 @@ class BranchesController < ApplicationController
   end
 
   def search
-    # @branches = Branch.where('name LIKE ?', '%' + params[:q] + '%')
-    @branches = Branch.where("name LIKE ?', '%'  #{params[:q]} + '%")
+    @branches = Branch.where('name LIKE ?', '%' + params[:q] + '%')
+    #@branches = Branch.where("name LIKE ?', '%'  #{params[:q]} + '%")
   end
 
   # GET /branches/1/edit
