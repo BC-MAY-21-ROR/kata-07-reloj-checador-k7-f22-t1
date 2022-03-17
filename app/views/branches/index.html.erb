@@ -3,7 +3,7 @@
 <div class="container">
  <div class="row">
 
-   <form id="search_form" class="col-md-3" action="/search">
+   <form id="search_form" class="col-md-3" action="/branches">
      <input class="form-control" type="search" name="q" placeholder="Search Branch" aria-label="Search">
    </form> 
     <button form="search_form" class="btn btn-success col-md-1" type="submit"> <i class="bi bi-search"></i></button>
@@ -22,10 +22,9 @@
     </tr>
   </thead>
   <tbody>
-  <% num = 0 %>
-  <% @branches.each do |branch| %>
+  <% @branches.each_with_index do |branch, index| %>
     <tr>
-      <th scope="row"><%= num = num + 1 %></th>
+      <th scope="row"><%= index + 1 %></th>
       <td><%= branch.name %></td>
       <td><%= branch.address %></td>
       <td><%= link_to "Details", branch, class: 'btn btn-success' %></td>

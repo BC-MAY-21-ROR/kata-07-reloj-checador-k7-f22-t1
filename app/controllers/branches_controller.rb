@@ -6,7 +6,7 @@ class BranchesController < ApplicationController
 
   # GET /branches or /branches.json
   def index
-    @branches = Branch.all
+    @branches = Branch.all.where('name LIKE ?', "%#{params[:q]}%")
   end
 
   # GET /branches/1 or /branches/1.json
@@ -15,11 +15,6 @@ class BranchesController < ApplicationController
   # GET /branches/new
   def new
     @branch = Branch.new
-  end
-
-  def search
-    @branches = Branch.where('name LIKE ?', '%' + params[:q] + '%')
-    #@branches = Branch.where("name LIKE ?', '%'  #{params[:q]} + '%")
   end
 
   # GET /branches/1/edit
