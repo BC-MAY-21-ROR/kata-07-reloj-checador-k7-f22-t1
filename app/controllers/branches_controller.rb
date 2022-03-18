@@ -7,6 +7,7 @@ class BranchesController < ApplicationController
   # GET /branches or /branches.json
   def index
     @branches = Branch.all.where('name LIKE ?', "%#{params[:q]}%")
+    @branch = Branch.new
   end
 
   # GET /branches/1 or /branches/1.json
@@ -15,6 +16,8 @@ class BranchesController < ApplicationController
   # GET /branches/new
   def new
     @branch = Branch.new
+    @branch = Branch.all
+    render 'index'
   end
 
   # GET /branches/1/edit
@@ -26,7 +29,7 @@ class BranchesController < ApplicationController
 
     respond_to do |format|
       if @branch.save
-        format.html { redirect_to branch_url(@branch), notice: 'Branch was successfully created.' }
+        format.html { redirect_to branches_url, notice: 'Branch was successfully created.' }
         format.json { render :show, status: :created, location: @branch }
       else
         format.html { render :new, status: :unprocessable_entity }
