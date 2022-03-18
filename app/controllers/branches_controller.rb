@@ -16,8 +16,6 @@ class BranchesController < ApplicationController
   # GET /branches/new
   def new
     @branch = Branch.new
-    @branch = Branch.all
-    render 'index'
   end
 
   # GET /branches/1/edit
