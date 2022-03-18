@@ -1,4 +1,4 @@
-<h1>Employees' List</h1>
+<h1>Employees' List</h1> <%# This will be replaced by the navbar%>
 
 <% if @form %>
   <%=render "employees/form"%>
@@ -31,15 +31,21 @@
     </thead>
     <tbody>
       <%@employees.each do |employee|%>
-        <%= content_tag :tr, :style => (employee.status ? "" : "color:gray") do%>
+        <%= content_tag :tr, :style => (employee.status ? "" : "color:#33333344") do%>
           <th class="text-end"><%=employee.id%></th>
-          <td><%=employee.name%></td>
+          <td><%=employee.name.titleize %></td>
           <td class="text-center"><%=employee.branch.name%></td>
           <td class="text-center"><%=employee.role.description%></td>
           <td class="text-center"><%=employee.email%></td>
           <td class="text-center">
             <%= link_to 'Edit', edit_employee_path(employee), class: "btn btn-primary box" %>
-            <%= link_to 'Deactivate', employee_path(employee),  class: "btn btn-danger box" %>
+            
+            <% if employee.status %>
+              <%= link_to 'Deactivate', status_employee_path(employee),  class: "btn btn-danger box px-3" %>
+            <% else %>
+              <%= link_to "Activate", status_employee_path(employee),  class: "btn btn-success box px-4" %>
+            <% end %>
+            
           </td>
         <%end%>
       <%end%>
