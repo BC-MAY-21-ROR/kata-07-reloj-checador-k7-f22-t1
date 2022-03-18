@@ -1,28 +1,39 @@
-<p style="color: green"><%= notice %></p>
+<nav class="navbar navbar-light" style="background-color: #435D7D;"> 
+  <a class="navbar-brand text-white" href="#">Reloj checador</a>
+</nav>
 
-<div class="container">
+<div class="container mt-4" data-controller="branches">
+<% if notice.present? %>
+  <p class="alert alert-success"style="color: green"><%= notice %></p>
+<% end %>
+
  <div class="row">
 
    <form id="search_form" class="col-md-3" action="/branches">
      <input class="form-control" type="search" name="q" placeholder="Search Branch" aria-label="Search">
    </form> 
     <button form="search_form" class="btn btn-success col-md-1" type="submit"> <i class="bi bi-search"></i></button>
+
+    <%
+=begin%>
+ <%= link_to "Back to branches", branches_path, class:'btn btn-success col-md-1'%> 
+<%
+=end%>
+
     <div class="d-flex justify-content-end">
-      <%= link_to "New branch", new_branch_path, class: 'btn btn-primary col-md-2 bi bi-plus shadow' %>
+      <button class="btn btn-primary col-md-2 bi bi-plus shadow" data-action="click->branches#showAlert">New Branch</button>
     </div>
  </div> 
 
 
+<div class="d-none" data-branches-target="name">
 <h1>New branch</h1>
-
 <%= render "form", branch: @branch %>
-
 <br>
-
 <div>
   <%= link_to "Back to branches", branches_path %>
 </div>
-
+</div>
 
 
 <table class="table table-hover text-center shadow p-3 mb-5 rounded mt-5">
