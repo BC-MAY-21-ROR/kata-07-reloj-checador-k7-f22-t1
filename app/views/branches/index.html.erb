@@ -1,4 +1,4 @@
-<nav class="navbar navbar-light" style="background-color: #435D7D;"> 
+<nav class="navbar navbar-light p-3" style="background-color: #435D7D;"> 
   <a class="navbar-brand text-white" href="#">Reloj checador</a>
 </nav>
 
@@ -6,38 +6,40 @@
 <% if notice.present? %>
   <p class="alert alert-success"style="color: green"><%= notice %></p>
 <% end %>
-
- <div class="row">
-
-   <form id="search_form" class="col-md-3" action="/branches">
-     <input class="form-control" type="search" name="q" placeholder="Search Branch" aria-label="Search">
-   </form> 
-    <button form="search_form" class="btn btn-success col-md-1" type="submit"> <i class="bi bi-search"></i></button>
-
-    <%
+<%
 =begin%>
- <%= link_to "Back to branches", branches_path, class:'btn btn-success col-md-1'%> 
+ <div class="row"> 
 <%
 =end%>
+  <div class="d-none" data-branches-target="form_branches">
+    <%= render "form", branch: @branch %>
+  <br> 
+  </div>
+<%
+=begin%>
+ </div> 
+<%
+=end%>
+<div class="row p-3">
+    
+  <div class="shadow border border-muted d-flex justify-content-end rounded-pill col-md-4">
+   <form id="search_form" class="col-md-8" action="/branches">
+     <input class="form-control border-0 shadow-none" type="search" name="q" placeholder="Search Branch" aria-label="Search">
+   </form> 
+   <div class="col-md-4 d-flex justify-content-end">
+         <button form="search_form" class="btn btn-white shadow-none border-0 " type="submit"> <i class="bi bi-search"></i></button>
+  </div>
+  </div>
 
     <div class="d-flex justify-content-end">
-      <button class="btn btn-primary col-md-2 bi bi-plus shadow" data-action="click->branches#showAlert">New Branch</button>
+      <button class="btn btn-blue col-md-2 bi bi-plus shadow rounded-pill" data-branches-target="button_new" data-action="click->branches#showForm">New Branch</button>
     </div>
+    
  </div> 
 
 
-<div class="d-none" data-branches-target="name">
-<h1>New branch</h1>
-<%= render "form", branch: @branch %>
-<br>
-<div>
-  <%= link_to "Back to branches", branches_path %>
-</div>
-</div>
-
-
-<table class="table table-hover text-center shadow p-3 mb-5 rounded mt-5">
- <thead>
+<table class="table table-hover text-center shadow p-3 mb-5 rounded mt-5" style="border-color:white;">
+ <thead class="border" style="border-color:white;">
     <tr>
       <th scope="col"># Branch</th>
       <th scope="col">Branch name</th>
@@ -51,7 +53,7 @@
       <th scope="row"><%= index + 1 %></th>
       <td><%= branch.name %></td>
       <td><%= branch.address %></td>
-      <td><%= link_to "Details", branch, class: 'btn btn-success' %></td>
+      <td><%= link_to "Details", branch, class: 'btn btn-green rounded-pill' %></td>
     </tr>
   <% end %>
   </tbody>

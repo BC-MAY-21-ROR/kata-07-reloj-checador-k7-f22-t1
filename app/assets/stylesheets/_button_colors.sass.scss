@@ -1,0 +1,19 @@
+
+.btn-blue {
+    background: $blue-color;
+    color: $white-color;
+}
+
+.btn-red {
+    background: $red-color;
+    color: $white-color;
+}
+
+.btn-green {
+    background: $green-color;
+    color: $white-color;
+}
+
+.btn:hover {
+    color: $white-color;
+}
