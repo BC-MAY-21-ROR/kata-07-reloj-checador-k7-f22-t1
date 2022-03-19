@@ -1,6 +1,6 @@
 <h1>Employees' List</h1> <%# This will be replaced by the navbar%>
 
-<% if @form %>
+<% if @employee %>
   <%=render "employees/form"%>
 <% end %>
 
@@ -14,7 +14,7 @@
         </div>
       </div>
     <% end %>
-    <% unless @form %>
+    <% unless @employee %>
       <%= link_to '+ Add employee', new_employee_path, class:"btn btn-primary col-2 box ms-5 align-end"%>
     <% end %>
   </div>
