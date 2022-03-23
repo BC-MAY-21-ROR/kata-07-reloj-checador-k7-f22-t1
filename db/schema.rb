@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_08_233900) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_14_210822) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   create_table "admins", force: :cascade do |t|
@@ -21,6 +21,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_08_233900) do
     t.datetime "updated_at", null: false
   end
 
+
+  create_table "admins", force: :cascade do |t|
+    t.string "email"
+    t.string "name"
+    t.string "password"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "branches", force: :cascade do |t|
     t.string "name"
@@ -34,6 +42,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_08_233900) do
     t.string "name"
     t.integer "role_id"
     t.integer "private_number"
+<<<<<<< HEAD
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "records", force: :cascade do |t|
+    t.bigint "employee_id"
+=======
     t.integer "branch_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -43,6 +60,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_08_233900) do
 
   create_table "records", force: :cascade do |t|
     t.integer "employee_id"
+>>>>>>> master
     t.datetime "check_in"
     t.datetime "check_out"
     t.integer "hours"
@@ -57,7 +75,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_08_233900) do
     t.datetime "updated_at", null: false
   end
 
+<<<<<<< HEAD
+=======
   add_foreign_key "employees", "branches"
   add_foreign_key "employees", "roles"
+>>>>>>> master
   add_foreign_key "records", "employees"
 end

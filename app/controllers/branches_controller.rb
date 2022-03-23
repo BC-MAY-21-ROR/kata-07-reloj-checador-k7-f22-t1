@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
+# class controller for branches
 class BranchesController < ApplicationController
   before_action :set_branch, only: %i[show edit update destroy]
 
   # GET /branches or /branches.json
   def index
-    @branches = Branch.all
+    @branches = Branch.all.where('name LIKE ?', "%#{params[:q]}%")
+    @branch = Branch.new
   end
 
   # GET /branches/1 or /branches/1.json
@@ -25,7 +27,7 @@ class BranchesController < ApplicationController
 
     respond_to do |format|
       if @branch.save
-        format.html { redirect_to branch_url(@branch), notice: 'Branch was successfully created.' }
+        format.html { redirect_to branches_url, notice: 'Branch was successfully created.' }
         format.json { render :show, status: :created, location: @branch }
       else
         format.html { render :new, status: :unprocessable_entity }

@@ -1,8 +1,7 @@
-<%= form_with(model: branch) do |form| %>
+<%= form_with(model: branch, data: {controller: "brances"}) do |form| %>
   <% if branch.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(branch.errors.count, "error") %> prohibited this branch from being saved:</h2>
-
       <ul>
         <% branch.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,18 +9,16 @@
       </ul>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div>
-    <%= form.label :address, style: "display: block" %>
-    <%= form.text_field :address %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="row">
+    <div class="col-md-4">
+      <%= form.text_field :name, class: 'rounded-pill shadow form-control col-md-4',  placeholder: "Branch name" %>
+    </div>
+    <div class="col-md-4">
+      <%= form.text_field :address, class: 'rounded-pill shadow form-control col-md-4',  placeholder: "Address here" %>
+    </div>
+    <div class="d-flex justify-content-end col-md-4">
+      <%= form.submit "+ Add", class: "btn shadow border btn-blue border-muted rounded-pill col-md-4" %>
+      <%= link_to "Close", branches_path, class: 'rounded-pill border border-muted btn btn-red bi bi-x shadow col-md-4' %>
+    </div>
   </div>
 <% end %>
