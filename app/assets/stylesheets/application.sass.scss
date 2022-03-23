@@ -5,39 +5,5 @@
 @import './employees/box.scss';
 @import './employees/form.scss';
 @import './employees/button.scss';
+@import './records/check.scss';
 
-//body
-body {
-  background-color: $background-body;
-}
-
-//Form group style
-.form-group {
-  display: flex;
-  flex-wrap: wrap;
-  label {
-    width: 100%;
-    font-size: 18px;
-  }
-  input {
-    width: 100%;
-    height: 50px;
-    border-radius: $rounded;
-    border: none;
-    font-size: 18px;
-    box-shadow: $shadow;
-    -moz-appearance: textfield;
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-  }
-  p {
-    color: $grey-text;
-  }
-}
-.alert {
-  text-align: center;
-  margin-top: 1rem;
-}

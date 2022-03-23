@@ -4,7 +4,7 @@ class CreateEmployees < ActiveRecord::Migration[7.0]
       t.string :email
       t.string :name
       t.belongs_to :role, foreign_key: true
-      t.string :status
+      t.boolean :status
       t.integer :private_number
       t.belongs_to :branch, foreign_key: true
       t.timestamps
