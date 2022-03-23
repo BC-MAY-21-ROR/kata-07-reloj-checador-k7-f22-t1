@@ -22,14 +22,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_14_210822) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "admins", force: :cascade do |t|
-    t.string "email"
-    t.string "name"
-    t.string "password"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "branches", force: :cascade do |t|
     t.string "name"
     t.string "address"
@@ -43,10 +35,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_14_210822) do
     t.bigint "role_id"
     t.string "status"
     t.integer "private_number"
-    t.integer "status"
     t.bigint "branch_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["branch_id"], name: "index_employees_on_branch_id"
+    t.index ["role_id"], name: "index_employees_on_role_id"
   end
 
   create_table "records", force: :cascade do |t|
@@ -61,7 +54,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_14_210822) do
 
   create_table "roles", force: :cascade do |t|
     t.string "description"
-    t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

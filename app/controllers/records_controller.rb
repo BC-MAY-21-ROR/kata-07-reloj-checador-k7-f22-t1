@@ -3,7 +3,7 @@
 class RecordsController < ApplicationController
 
   def index
-    @records = Records.all
+    @records = Record.all
   end
 
   def new
