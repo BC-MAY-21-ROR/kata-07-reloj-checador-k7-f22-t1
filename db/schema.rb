@@ -13,14 +13,6 @@
 ActiveRecord::Schema[7.0].define(version: 2022_03_14_210822) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  create_table "admins", force: :cascade do |t|
-    t.string "email"
-    t.string "name"
-    t.string "password"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
 
   create_table "admins", force: :cascade do |t|
     t.string "email"
@@ -40,18 +32,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_14_210822) do
   create_table "employees", force: :cascade do |t|
     t.string "email"
     t.string "name"
-    t.integer "role_id"
+    t.bigint "role_id"
+    t.string "status"
     t.integer "private_number"
-<<<<<<< HEAD
-    t.integer "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "records", force: :cascade do |t|
-    t.bigint "employee_id"
-=======
-    t.integer "branch_id"
+    t.bigint "branch_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["branch_id"], name: "index_employees_on_branch_id"
@@ -59,11 +43,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_14_210822) do
   end
 
   create_table "records", force: :cascade do |t|
-    t.integer "employee_id"
->>>>>>> master
+    t.bigint "employee_id"
     t.datetime "check_in"
     t.datetime "check_out"
-    t.integer "hours"
+    t.decimal "hours"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["employee_id"], name: "index_records_on_employee_id"
@@ -75,10 +58,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_14_210822) do
     t.datetime "updated_at", null: false
   end
 
-<<<<<<< HEAD
-=======
   add_foreign_key "employees", "branches"
   add_foreign_key "employees", "roles"
->>>>>>> master
   add_foreign_key "records", "employees"
 end

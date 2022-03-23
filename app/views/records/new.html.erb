@@ -1,0 +1,23 @@
+<!-- inside app/views/home/index.html.erb -->
+<div class="container">
+  <% flash.each do |name, msg| %>
+    <div class="alert alert-<%= name %>">
+      <%= msg %>
+    </div>
+  <% end%>
+  <div class="vh-100 row d-flex align-items-center ">
+    <div class="col-6">
+      Reloj
+    </div>
+    <div class="col-6">
+      <%= form_for @record do%>
+        <div class="form-group">
+          <label class="label">Private Number</label>
+          <input type="number" placeholder="Example: 123456" name="private_number"/>
+          <p>Put your private number and press validate button to check in or check out.</p>
+        </div>
+          <button class="btn btn-success btn-lg">Check</button>
+      <% end%>
+    </div>
+  </div>
+</div>
