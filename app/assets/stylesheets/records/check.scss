@@ -1,0 +1,41 @@
+//body
+body {
+  background-color: $background-body;
+}
+
+//Form group style
+.check {
+  .form-group {
+    display: flex;
+    flex-wrap: wrap;
+
+    label {
+      font-size: 18px;
+      width: 100%;
+    }
+
+    input {
+      -moz-appearance: textfield;
+      border-radius: $rounded;
+      border: none;
+      box-shadow: $shadow;
+      font-size: 18px;
+      height: 50px;
+      width: 100%;
+
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    }
+    p {
+      color: $grey-text;
+    }
+  }
+}
+.alert {
+  text-align: center;
+  margin-top: 1rem;
+}
+  

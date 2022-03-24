@@ -30,12 +30,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_14_210822) do
   end
 
   create_table "employees", force: :cascade do |t|
+    t.bigint "branch_id"
+    t.bigint "role_id"
     t.string "email"
     t.string "name"
-    t.bigint "role_id"
-    t.string "status"
+    t.boolean "status"
     t.integer "private_number"
-    t.bigint "branch_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["branch_id"], name: "index_employees_on_branch_id"
@@ -46,7 +46,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_14_210822) do
     t.bigint "employee_id"
     t.datetime "check_in"
     t.datetime "check_out"
-    t.decimal "hours"
+    t.integer "hours"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["employee_id"], name: "index_records_on_employee_id"

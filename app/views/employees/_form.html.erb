@@ -1,0 +1,68 @@
+<div class="container">
+  <h5>
+    
+    <% if @employee.id %>
+      Edit Employee  
+    <% else %>
+      Add Employee
+    <% end %>
+    
+  </h5>
+  <%= form_with(model: @employee, local: true) do |form|%>
+    <div class="employee_form">
+
+      <div class="form-group">
+        <%= form.label :name, "Name:", class:"form-label" %>
+        <%= form.text_field :name, class:"form-control box", placeholder:"Ex: John Smith" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :email, "E-mail:", class:"form-label" %>
+        <%= form.email_field :email, class:"form-control box", placeholder:"Ex: jsmith@example.com"  %>
+      </div>
+      
+      <div class="form-group">
+        <%= form.label :private_number, "Private Number:", class:"form-label" %>
+        <%= form.password_field :private_number, class:"form-control box", placeholder:"Ex: 1245123"  %>  
+      </div>
+
+      <div class="form-group">
+        <label for="role" class="form-label">Position:</label>
+        <select name="role" class="form-select box">
+          <% @roles.each do |role|%>
+            <% if role.id == @employee.role_id %>
+              <option selected value="<%=role.id%>"><%=role.description%></option>  
+            <% else %>
+              <option value="<%=role.id%>"><%=role.description%></option>  
+            <% end %>
+          <%end%>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="branch" class="form-label">Branch:</label>
+        <select name="branch" class="form-select box">
+          <% @branches.each do |branch|%>
+            <% if branch.id == @employee.branch_id %>
+              <option selected value="<%=branch.id%>"><%=branch.name%></option>  
+            <% else %>
+              <option value="<%=branch.id%>"><%=branch.name%></option>  
+            <% end %>
+          <%end%>
+        </select>
+      </div>
+
+      <div class="form-group form-group-buttons row flex-row align-items-end justify-content-between">
+        
+        <% if @employee.id %>
+          <%= form.submit "Edit Employee", class:"box btn btn-primary col-6 -h-50" %>          
+        <% else %>
+          <%= form.submit "+ Add Employeee", class:"box btn btn-primary col-6 h-50" %>          
+        <% end %>
+        
+        <%= link_to 'X Cancel', employees_path,  class: "btn btn-danger box col-5 h-50" %>
+      </div>
+    </div>
+  <%end%>
+  <hr/>
+</div>

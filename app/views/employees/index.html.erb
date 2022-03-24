@@ -1,12 +1,54 @@
-<h1>Employees' List</h1>
+<h1>Employees' List</h1> <%# This will be replaced by the navbar%>
 
-<%@employees.each do |employee|%>
-  <div style="margin-bottom:16px">
-    <h3>
-      <%= employee.id%> <%=employee.name%>
-    </h3>
-    <p>Position: <span><%=employee.position%></span></p>
-      <%= link_to 'Edit', edit_employee_path(employee) %>
-      <%= link_to 'Delete', employee_path(employee) %>
+<% if @employee %>
+  <%=render "employees/form"%>
+<% end %>
+
+<div class="container">
+  <div class="row m-5">
+    <%= form_tag employees_path, method: :get, class:"col-8" do%>
+      <div class="input-group me-5">
+        <input type="text" name="name" class="input-text form-control col-3 box" placeholder="  Search Employee"/>
+        <div class="input-group-append">
+          <%= submit_tag 'Search', class: "btn btn-light" %>
+        </div>
+      </div>
+    <% end %>
+    <% unless @employee %>
+      <%= link_to '+ Add employee', new_employee_path, class:"btn btn-primary col-2 box ms-5 align-end"%>
+    <% end %>
   </div>
-<%end%>
+  <table class="table table-light table-hover box">
+    <thead>
+      <tr>
+        <th class="text-end">#</th>
+        <th>Name</th>
+        <th class="text-center">Branch</th>
+        <th class="text-center">Position</th>
+        <th class="text-center">E-mail</th>
+        <th class="text-center">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%@employees.each do |employee|%>
+        <%= content_tag :tr, :style => (employee.status ? "" : "color:#33333344") do%>
+          <th class="text-end"><%=employee.id%></th>
+          <td><%=employee.name.titleize %></td>
+          <td class="text-center"><%=employee.branch.name%></td>
+          <td class="text-center"><%=employee.role.description%></td>
+          <td class="text-center"><%=employee.email%></td>
+          <td class="text-center">
+            <%= link_to 'Edit', edit_employee_path(employee), class: "btn btn-primary box" %>
+            
+            <% if employee.status %>
+              <%= link_to 'Deactivate', status_employee_path(employee),  class: "btn btn-danger box px-3" %>
+            <% else %>
+              <%= link_to "Activate", status_employee_path(employee),  class: "btn btn-success box px-4" %>
+            <% end %>
+            
+          </td>
+        <%end%>
+      <%end%>
+    </tbody>
+  </table>
+</div>

@@ -1,34 +1,48 @@
 # frozen_string_literal: true
 
 class EmployeesController < ApplicationController
+  before_action :new_form, only: [:new, :edit]
+  before_action :list_employees, only: [:new, :index, :edit]
+  before_action :find_employee, only: [:edit, :update, :update_status]
   def index
-    @employees = Employee.all
   end
 
   def new
     @employee = Employee.new
+    render 'index'
   end
 
   def create
-    Employee.create name: params['name'], position: params['position'], email: ['email'],
-                    private_number: ['private_number']
+    Employee.create_employee(params)
     redirect_to action: :index
   end
 
   def edit
-    @employee = Employee.find(params['id'])
+    render 'index'
   end
 
   def update
-    employee = Employee.find(params['id'])
-    employee.update name: params['name'], position: params['position'], email: ['email'],
-                    private_number: ['private_number']
+    @employee.update_employee(params)
     redirect_to action: :index
   end
 
-  def show
-    employee = Employee.find(params['id'])
-    employee.update position: 'Desactive'
+  def update_status
+    status = !@employee.status
+    @employee.update status: status
     redirect_to action: :index
   end
+
+  def new_form
+    @branches = Branch.all
+    @roles = Role.all
+  end
+
+  def list_employees
+    @employees = Employee.list(params["name"])
+  end
+
+  def find_employee
+    @employee = Employee.find(params['id'])
+  end
+
 end
