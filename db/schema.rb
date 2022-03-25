@@ -30,15 +30,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_24_214617) do
   end
 
   create_table "employees", force: :cascade do |t|
-    t.bigint "branch_id"
-    t.bigint "role_id"
     t.string "email"
     t.string "name"
-<<<<<<< HEAD
     t.boolean "status"
-=======
-    t.string "status"
->>>>>>> references were separated in different migrations
     t.integer "private_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -51,7 +45,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_24_214617) do
   create_table "records", force: :cascade do |t|
     t.datetime "check_in"
     t.datetime "check_out"
-    t.integer "hours"
+    t.decimal "hours"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "employee_id"
