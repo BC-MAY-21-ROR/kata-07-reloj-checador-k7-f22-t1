@@ -21,4 +21,7 @@ class Record < ApplicationRecord
     check_out =self.update(record.id, check_out: current_time, hours: hours)
     check_out.check_out.localtime
   end
+  def self.employees_by_branch! id_branch
+    Employee.joins(:self).where(employees:{branch_id: id_branch})
+  end
 end

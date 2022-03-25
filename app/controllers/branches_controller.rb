@@ -3,6 +3,7 @@
 # class controller for branches
 class BranchesController < ApplicationController
   before_action :set_branch, only: %i[show edit update destroy]
+  before_action :attendance_branch, only:[:show]
 
   # GET /branches or /branches.json
   def index
@@ -59,6 +60,9 @@ class BranchesController < ApplicationController
     end
   end
 
+  def attendance_branch
+    @employees= Record.employees_by_branch!(2)
+  end
   private
 
   # Use callbacks to share common setup or constraints between actions.
