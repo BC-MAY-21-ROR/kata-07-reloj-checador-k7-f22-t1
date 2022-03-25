@@ -1,4 +1,5 @@
 // < yarn build:css --watch > to compile
+// modules
 @import "application.bootstrap.scss";
 @import "variables.sass.scss";
 @import "button_colors.sass.scss";
@@ -6,3 +7,6 @@
 @import './employees/form.scss';
 @import './employees/button.scss';
 @import './records/check.scss';
+@import "clock.sass.scss";
+@import "check_form.sass.scss";
+@import "navbar.sass.scss";

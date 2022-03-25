@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# class EmployeesController
 class EmployeesController < ApplicationController
   before_action :new_form, only: [:new, :edit]
   before_action :list_employees, only: [:new, :index, :edit]
