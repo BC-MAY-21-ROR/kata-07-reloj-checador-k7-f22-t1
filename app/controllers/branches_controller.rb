@@ -2,6 +2,7 @@
 
 # class controller for branches
 class BranchesController < ApplicationController
+  before_action :authenticate_admin!
   before_action :set_branch, only: %i[show edit update destroy]
   before_action :attendance_branch, only: [:show]
 

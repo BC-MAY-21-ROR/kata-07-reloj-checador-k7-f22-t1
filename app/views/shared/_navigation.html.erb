@@ -6,12 +6,25 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item active">
-          <%= link_to 'Employees', employees_path, class: 'nav-link bi bi-person' %>
-        </li>
-        <li class="nav-item">
-        <%= link_to 'Branches', branches_path, class: 'nav-link bi bi-shop'%>
-        </li>
+          <%if current_page?(root_path) || current_page?(new_record_path)%>
+            <li class="nav-item active">
+              <%= link_to 'Admin', new_admin_session_path, class: 'btn btn-primary rounded-pill' %>
+            </li>
+          <%elsif !admin_signed_in?%>
+            <li class="nav-item active">
+              <%= link_to 'Back to check in/out', new_record_path, class: 'btn btn-primary rounded' %>
+            </li>
+          <%else%>
+            <li class="nav-item active">
+              <%= link_to 'Employees', employees_path, class: 'nav-link bi bi-person rounded' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Branches', branches_path, class: 'nav-link bi bi-shop'%> 
+            </li>
+            <li>
+              <%= link_to 'sign out xd', destroy_admin_session_path, 'data-turbo-method': :delete, class: 'btn btn-danger'%>
+            </li>
+          <%end%>
       </ul>
     </div>
   </nav>

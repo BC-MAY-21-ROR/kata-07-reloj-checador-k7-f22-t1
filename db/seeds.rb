@@ -7,5 +7,5 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 branches = Branch.create([{name: "Colima", address: "Av. Rio Colima"}, {name: "Tecoman", address: "Laguna de chamala"}  ])
-roles = Role.create([{description: "Boss"}, {description: "Assistant"}])
+roles = Role.create([{description: "Boss"}, {description: "Assistant"}, {description: "chalan xd"}])
 employees = Employee.create([{name: "Juan Perez", email: "juan@g.com", role_id: roles.first, private_number: 12345, status: "active", branch_id: branches.first},{name: "Luis Lopez", email: "Luis@g.com", role_id: roles.first, private_number: 1234, status: "active", branch_id: branches.first}, ])
