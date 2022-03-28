@@ -18,7 +18,7 @@ class Record < ApplicationRecord
   def self.check_out!(record)
     current_time = Time.now
     hours = format('%.2f', ((current_time.to_time - record.check_in) / 1.hour))
-    check_out = update(record.id, check_out: current_time, hours:)
+    check_out = update(record.id, check_out: current_time, hours:hours)
     check_out.check_out.localtime
   end
 
@@ -29,7 +29,7 @@ class Record < ApplicationRecord
     employee = Employee.joins(:records, :role).select('employees.*, records.check_in as check_in, records.check_out as check_out, roles.description as position').where(
       employees: { branch_id: id_branch }, records: { check_in: date_range }
     )
-    employee = employee.where({ role_id: }) if role_id.present?
+    employee = employee.where({ role_id: role_id }) if role_id.present?
     employee = employee.where('name LIKE ?', "%#{sanitize_sql_like(name)}%") if name.present?
     employee
   end
