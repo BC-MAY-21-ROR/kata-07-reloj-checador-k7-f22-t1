@@ -5,11 +5,12 @@
 @import "./employees/box.scss";
 @import "./employees/form.scss";
 @import "./employees/button.scss";
+@import "./branches/titles.scss";
 @import "./records/check.scss";
 @import "clock.sass.scss";
 @import "check_form.sass.scss";
 @import "navbar.sass.scss";
-
+@import "branches/show.scss";
 //body
 body {
   background-color: $background-body;

@@ -1,0 +1,15 @@
+<%= form_tag filter_path(@branch.id), method: :get, remote: true, class: 'filter' do %>
+  <div class="form-group">
+    <label>Filter by day</label>
+    <%= date_field_tag :day, class:"form-date w-75"%>
+  </div>
+  <div class="form-group">
+    <label>Filter by role</label>
+    <%= select_tag :role_id, options_from_collection_for_select(Role.all, "id", "description"), prompt: "Select a role", class:"form-select w-75"%>
+  </div>
+  <div class="form-group">
+    <label>Filter by name</label>
+    <%= text_field_tag :name%>
+  </div>
+  <%= submit_tag 'Search', :name => nil, class:"btn btn-primary btn-lg mt-2 w-50" %>
+<% end %>
