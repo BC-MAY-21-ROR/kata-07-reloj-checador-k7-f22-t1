@@ -2,7 +2,6 @@
   <p style="color: green"><%= notice %></p>
   <%= render @branch %>
   <hr />
-  <div><%= link_to "Back to branches", branches_path %></div>
   <div class="row">
     <div class="row mb-3">
       <div class="col-3">
@@ -10,22 +9,22 @@
           <option selected value="1">Attendance by day</option>
         </select>
       </div>
-      <div class="col-9">
+      <div class="col-5 mx-4">
         <h3 class="fs-2 fw-bold ml-4 dark-blue">
-          Attendance <%= "#{@employees.size}/#{@attendance_total}" %>
+          Total Attendance <%= "#{@employees.size}/#{@attendance_total}" %>
         </h3>
       </div>
     </div>
   </div>
   <div class="row">
     <div class="col-7 d-flex justify-content-center">
-      <div class="w-75 table-attendance">
+      <div class="w-100 table-attendance">
         <%= render partial: 'attendance' %>
       </div>
     </div>
-    <div class="col-5">
-      <div class="w-75">
-        <div id="search_by_day">
+    <div class="col-5 d-flex justify-content-center">
+      <div class="w-100">
+        <div id="filter">
           <%= render :partial => 'branches/filter' %>
         </div>
       </div>
