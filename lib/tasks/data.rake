@@ -1,13 +1,17 @@
 require 'faker'
 desc 'Populates the database with sample data'
-  task data: :environment do
-    employee = rand(3)
-    150.times{|d|
-              (Employee.first.id .. Employee.last.id).each_with_index do  |e|
-              puts e
-              Record.create! employee_id: e, check_in: Time.now.midnight-d.day+8.hours, check_out: Time.now.midnight-d.day+16.hours
-              end}
-  end
+task :data => :environment do
+  employee = rand(3)
+  90.times{|d|
+            (Employee.first.id .. Employee.last.id).each_with_index do  |e|
+            hours = rand(14..16)
+            check_in = Time.now.midnight-d.day+8.hours
+            check_out = Time.now.midnight-d.day+hours.hours
+            hours = ( check_out - check_in) / 1.hours
+            puts check_out
+            Record.create! employee_id: e, check_in: check_in , check_out: check_out, hours: hours
+            end}
+end
 
   task employee: :environment do
     employee = rand(3)
