@@ -4,11 +4,6 @@
   <hr />
   <div class="row">
     <div class="row mb-3">
-      <div class="col-3">
-        <select class="form-select" aria-label="Default select example">
-          <option selected value="1">Attendance by day</option>
-        </select>
-      </div>
       <div class="col-5 mx-4">
         <h3 class="fs-2 fw-bold ml-4 dark-blue">
           Total Attendance <%= "#{@employees.size}/#{@attendance_total}" %>
@@ -17,17 +12,19 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-7 d-flex justify-content-center">
-      <div class="w-100 table-attendance">
+    <%= form_with(model: @branch) do |form| %>
+      <%= content_tag :div, nil, data:{ controller: "showhide", showhide_show_if_value: "Attendance by day",showhide_hide_class: "d-none" } do %>
+      <%= form.select :content, ["Attendance by day","Attendance by month", "Absence by month"], {}, {class:"mb-4 form-select w-25", data: { showhide_target: "field", action:"change->showhide#change" }} %>
+      <div data-showhide-target="attendance_by_day" class="row d-flex justify-content-between">
         <%= render partial: 'attendance' %>
       </div>
-    </div>
-    <div class="col-5 d-flex justify-content-center">
-      <div class="w-100">
-        <div id="filter">
-          <%= render partial: 'branches/filter' %>
-        </div>
+      <div data-showhide-target="attendance_by_month" >
+        <%= render partial: 'attendance_by_month' %>
       </div>
-    </div>
+      <div data-showhide-target="absence_by_month">
+        <%= render partial: 'absence_by_month' %>
+      </div>
+      <% end %>
+    <% end %>
   </div>
 </div>
