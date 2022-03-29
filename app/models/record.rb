@@ -37,7 +37,16 @@ class Record < ApplicationRecord
     employee
   end
 
-  def self.attendance_by_month (month, id_branch)
-                                                         
+  def self.attendance_by_month! (id_branch)
+    testD = Record.all.select(:hours, :check_out)
+    data = testD.group_by { |t| t.check_out.strftime("%B/%Y")}
+    data.each do |key, value|
+      average_hours = 0
+      value.each_with_index do |i, v|
+        average_hours += i.hours
+        data[key] = average_hours/value.length
+      end
+    end
+    data
   end
 end
