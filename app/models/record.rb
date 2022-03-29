@@ -33,4 +33,8 @@ class Record < ApplicationRecord
     employee = employee.where('name LIKE ?', "%#{sanitize_sql_like(name)}%") if name.present?
     employee
   end
+
+  def self.attendance_by_month (month, id_branch)
+                                                         
+  end
 end
