@@ -3,7 +3,7 @@
 # class controller for branches
 class BranchesController < ApplicationController
   before_action :set_branch, only: %i[show edit update destroy]
-  before_action :attendance_branch, only: [:show]
+  before_action :attendance_branch,:attendance_by_month, only: [:show]
 
   # GET /branches or /branches.json
   def index
@@ -63,6 +63,10 @@ class BranchesController < ApplicationController
   def attendance_branch
     @attendance_total = Employee.where({ branch_id: @branch }).count
     @employees = Record.search_by_day! params[:day], params[:role_id], params[:name], @branch
+  end
+
+  def attendance_by_month
+    @attendance_by_month = Record.attendance_by_month!  @branch
   end
 
   private
