@@ -5,7 +5,7 @@
   </div>
   <div class="form-group w-75 my-4">
     <label>Filter by role</label>
-    <%= select_tag :role_id, options_from_collection_for_select(Role.all, "id", "description"), prompt: "Select a role", class:"form-select"%>
+    <%= select_tag :role_id, options_from_collection_for_select(get_role, "id", "description"), prompt: "Select a role", class:"form-select"%>
   </div>
   <div class="form-group w-75">
     <label>Filter by name</label>
