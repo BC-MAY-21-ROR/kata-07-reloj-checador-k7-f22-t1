@@ -18,7 +18,7 @@ class Record < ApplicationRecord
   def self.check_out!(record)
     current_time = Time.now
     hours = format('%.2f', ((current_time.to_time - record.check_in) / 1.hour))
-    check_out = update(record.id, check_out: current_time, hours:hours)
+    check_out = update(record.id, check_out: current_time, hours: hours)
     check_out.check_out.localtime
   end
 
@@ -29,19 +29,19 @@ class Record < ApplicationRecord
     employee = Employee.joins(:records, :role).select('employees.*, records.check_in as check_in, records.check_out as check_out, roles.description as position').where(
       employees: { branch_id: id_branch }, records: { check_in: date_range }
     )
-    employee = employee.where({ role_id: role_id }) if role_id.present?
+    employee = employee.where({ role_id: role_id}) if role_id.present?
     employee = employee.where('name LIKE ?', "%#{sanitize_sql_like(name)}%") if name.present?
     employee
   end
 
-  def self.attendance_by_month! (id_branch)
+  def self.attendance_by_month!(_id_branch)
     testD = Record.all.select(:hours, :check_out)
-    data = testD.group_by { |t| t.check_out.strftime("%B/%Y")}
+    data = testD.group_by { |t| t.check_out.strftime('%B/%Y') }
     data.each do |key, value|
       average_hours = 0
-      value.each_with_index do |i, v|
+      value.each_with_index do |i, _v|
         average_hours += i.hours
-        data[key] = average_hours/value.length
+        data[key] = average_hours / value.length
       end
     end
     data
