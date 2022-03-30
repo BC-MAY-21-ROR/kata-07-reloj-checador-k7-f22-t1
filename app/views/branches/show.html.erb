@@ -1,7 +1,33 @@
-<p style="color: green"><%= notice %></p>
-<%= render @branch %>
-<div>
-  <%= link_to "Edit this branch", edit_branch_path(@branch) %> |
-  <%= link_to "Back to branches", branches_path %>
-  <%= button_to "Destroy this branch", @branch, method: :delete %>
+<div class="container pb-4">
+  <p style="color: green"><%= notice %></p>
+  <%= render @branch %>
+  <hr />
+  <div class="row">
+    <div class="row mb-3">
+      <div class="col-3">
+        <select class="form-select" aria-label="Default select example">
+          <option selected value="1">Attendance by day</option>
+        </select>
+      </div>
+      <div class="col-5 mx-4">
+        <h3 class="fs-2 fw-bold ml-4 dark-blue">
+          Total Attendance <%= "#{@employees.size}/#{@attendance_total}" %>
+        </h3>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-7 d-flex justify-content-center">
+      <div class="w-100 table-attendance">
+        <%= render partial: 'attendance' %>
+      </div>
+    </div>
+    <div class="col-5 d-flex justify-content-center">
+      <div class="w-100">
+        <div id="filter">
+          <%= render partial: 'branches/filter' %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

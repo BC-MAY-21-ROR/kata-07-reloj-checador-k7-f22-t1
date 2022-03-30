@@ -2,11 +2,10 @@
 
 # class EmployeesController
 class EmployeesController < ApplicationController
-  before_action :new_form, only: [:new, :edit]
-  before_action :list_employees, only: [:new, :index, :edit]
-  before_action :find_employee, only: [:edit, :update, :update_status]
-  def index
-  end
+  before_action :new_form, only: %i[new edit]
+  before_action :list_employees, only: %i[new index edit]
+  before_action :find_employee, only: %i[edit update update_status]
+  def index; end
 
   def new
     @employee = Employee.new
@@ -39,11 +38,10 @@ class EmployeesController < ApplicationController
   end
 
   def list_employees
-    @employees = Employee.list(params["name"])
+    @employees = Employee.list(params['name'])
   end
 
   def find_employee
     @employee = Employee.find(params['id'])
   end
-
 end

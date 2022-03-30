@@ -3,6 +3,7 @@
 # class controller for branches
 class BranchesController < ApplicationController
   before_action :set_branch, only: %i[show edit update destroy]
+  before_action :attendance_branch, only: [:show]
 
   # GET /branches or /branches.json
   def index
@@ -57,6 +58,11 @@ class BranchesController < ApplicationController
       format.html { redirect_to branches_url, notice: 'Branch was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def attendance_branch
+    @attendance_total = Employee.where({ branch_id: @branch }).count
+    @employees = Record.search_by_day! params[:day], params[:role_id], params[:name], @branch
   end
 
   private

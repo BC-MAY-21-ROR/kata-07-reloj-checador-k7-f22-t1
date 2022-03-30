@@ -1,10 +1,19 @@
 <div id="<%= dom_id branch %>">
-  <p>
-    <strong>Name:</strong>
-    <%= branch.name %>
-  </p>
-  <p>
-    <strong>Address:</strong>
+<div class="row">
+  <div class="col-12 d-flex justify-content-between px-5">
+    <h3>
+      <%= branch.name %>
+    </h3>
+    <section class=" w-25 d-flex flex-wrap gap-2 justify-content-center">
+      <%= link_to "Edit", edit_branch_path(branch), class: 'btn btn-green btn-lg rounded-pill btn_branch align-content-center' %>
+      <%= link_to "Delete", @branch, method: :delete, class: 'btn btn-danger btn-lg rounded-pill btn_branch' %>
+    </section>
+  </div>
+  <div class="col-12 d-flex justify-content-center">
+   <h4 class="text-black-50">
     <%= branch.address %>
-  </p>
+  </h4>
+  </div>
+</div>
+ 
 </div>
