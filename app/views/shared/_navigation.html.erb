@@ -6,14 +6,16 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-          <%if current_page?(root_path) || current_page?(new_record_path)%>
-            <li class="nav-item active">
-              <%= link_to 'Admin', new_admin_session_path, class: 'btn btn-primary rounded-pill' %>
-            </li>
-          <%elsif !admin_signed_in?%>
-            <li class="nav-item active">
-              <%= link_to 'Back to check in/out', new_record_path, class: 'btn btn-primary rounded-pill' %>
-            </li>
+          <%unless admin_signed_in?%>
+            <%if current_page?(root_path) || current_page?(new_record_path)%>
+              <li class="nav-item active">
+                <%= link_to 'Admin', new_admin_session_path, class: 'btn btn-primary rounded-pill' %>
+              </li>
+            <%else%>
+              <li class="nav-item active">
+                <%= link_to 'Back to check in/out', new_record_path, class: 'btn btn-primary rounded-pill' %>
+              </li>  
+            <% end %>
           <%else%>
             <li class="nav-item active">
               <%= link_to 'Employees', employees_path, class: 'nav-link bi bi-person rounded-pill' %>
