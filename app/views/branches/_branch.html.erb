@@ -1,17 +1,22 @@
 <div class="d-flex justify-content-center" id="<%= dom_id branch %>">
   <div class="col-md-6">
-    <p class="form-control">
-      <strong>Name:</strong>
+    <h1 class='d-flex justify-content-center mt-4 mb-4'>Edit Branch # Branch</h1>
+    <strong>Branch Name</strong>
+    <p class="form-control text-muted mt-1 p-3 shadow rounded-pill">
       <%= branch.name %>
     </p>
-    <p class="form-control">
-      <strong>Address:</strong>
+    <strong>Address</strong>
+    <p class="form-control mt-1 p-3 text-muted shadow rounded-pill">
       <%= branch.address %>
     </p>
     <div>
-    <%= link_to "Edit this branch", edit_branch_path(@branch), class:'btn btn-success form-control rounded-pill' %>
-    <%= link_to "Back to branches", branches_path, class:'btn btn-primary'%>
-    <%= button_to "Destroy this branch", @branch, method: :delete, form: { data: { turbo_confirm: "Are you sure to delete this branch?" } }, class:'d-inline btn btn-danger' %>
-  </div>
+      <div class="d-flex justify-content-center">
+        <%= link_to "Edit this branch", edit_branch_path(@branch), class:'mt-2 shadow mb-3 btn p-2 btn-green d-block justify-content-center col-md-5 rounded-pill' %>
+      </div>
+      <div class="d-flex justify-content-between mt-5">
+        <%= link_to "Back to branches", branches_path, class:'shadow rounded-pill p-2 btn btn-primary col-md-5' %>
+        <div class="col-md-5"><%= button_to "Destroy this branch", @branch, method: :delete, form: { data: { turbo_confirm: "Are you sure to delete this branch?" } }, class:'shadow p-2 rounded-pill btn btn-danger col-md-12' %></div>
+      </div>
+    </div>
   </div>
 </div>
