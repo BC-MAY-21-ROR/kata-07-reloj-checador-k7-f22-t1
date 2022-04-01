@@ -38,6 +38,8 @@ gem 'jbuilder'
 
 # chartkick to make charts 
 gem "chartkick"
+gem "groupdate"
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data"#, platforms: %i[ mingw mswin x64_mingw jruby ]
 
