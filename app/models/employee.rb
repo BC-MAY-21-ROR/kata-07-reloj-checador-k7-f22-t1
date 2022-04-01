@@ -22,7 +22,7 @@ class Employee < ApplicationRecord
 
   def self.create_employee(params)
     name = params[:employee][:name].upcase
-    create(name:name, role_id: params['role'], email: params[:employee][:email],
+    create(name: name, role_id: params['role'], email: params[:employee][:email],
            branch_id: params['branch'], private_number: params[:employee][:private_number],
            status: true)
   end

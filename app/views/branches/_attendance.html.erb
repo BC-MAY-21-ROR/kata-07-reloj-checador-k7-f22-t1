@@ -1,22 +1,41 @@
-  <table class=" col-6 table table-hover text-center shadow p-3 mb-5 rounded" style="border-color:white;">
-    <thead class="border" style="border-color:white;">
-      <tr>
-        <th scope="col"># Employee</th>
-        <th scope="col">Name</th>
-        <th scope="col">Position</th>
-        <th scope="col">Check In</th>
-        <th scope="col">Check Out</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @employees.each_with_index do |employee, index|%>
+<div class="col-7 d-flex justify-content-center">
+  <div class="w-100 table-attendance">
+    <table
+      class="col-6 table table-hover text-center shadow p-3 mb-5 rounded"
+      style="border-color: white"
+    >
+      <thead class="border" style="border-color: white">
+        <tr>
+          <th scope="col"># Employee</th>
+          <th scope="col">Name</th>
+          <th scope="col">Position</th>
+          <th scope="col">Check In</th>
+          <th scope="col">Check Out</th>
+          <th scope="col">Hours</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @employees.each_with_index do |employee, index|%>
         <tr>
           <th scope="row"><%= employee.id%></th>
           <td><%= employee.name%></td>
           <td><%= employee.position %></td>
           <td><%= employee.check_in.localtime.to_formatted_s(:short) %></td>
-          <td><%= employee.check_out !=nil ? employee.check_out.localtime.to_formatted_s(:short) : '' %></td>
+          <td>
+            <%= employee.check_out !=nil ?
+            employee.check_out.localtime.to_formatted_s(:short) : '' %>
+          </td>
+          <td>
+            <%= employee.hours %>
+          </td>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="col-5 d-flex justify-content-center">
+  <div class="w-100">
+    <div id="filter" class=" d-flex flex-wrap justify-content-center"><%= render :partial => 'branches/filter' %></div>
+  </div>
+</div>
