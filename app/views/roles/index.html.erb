@@ -21,6 +21,7 @@
         <tr>
           <th class="text-center"># Role</th>
           <th class="text-center">Description</th>
+		  <th class="text-center">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -28,6 +29,7 @@
         <tr>
           <td class="text-center"><%=role.id%></td>
           <td class="text-center"><%=role.description%></td>
+		  <td class="text-center"><%= link_to "Edit", edit_role_path(role.id), class: 'btn btn-green rounded-pill' %></td>
         </tr>
         <%end%>
       </tbody>
