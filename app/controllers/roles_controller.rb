@@ -13,7 +13,8 @@ class RolesController < ApplicationController
 
   def update
     respond_to do |format|
-      if @role.update(branch_params)
+    description = params["role"]["description"]
+      if @role.update(description: description)
         format.html { redirect_to roles_path, notice: 'Role was successfully updated.' }
         format.json { render :show, status: :ok, location: @role }
       else
