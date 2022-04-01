@@ -11,6 +11,7 @@
           <th scope="col">Position</th>
           <th scope="col">Check In</th>
           <th scope="col">Check Out</th>
+          <th scope="col">Hours</th>
         </tr>
       </thead>
       <tbody>
@@ -23,6 +24,9 @@
           <td>
             <%= employee.check_out !=nil ?
             employee.check_out.localtime.to_formatted_s(:short) : '' %>
+          </td>
+          <td>
+            <%= employee.hours %>
           </td>
         </tr>
         <% end %>

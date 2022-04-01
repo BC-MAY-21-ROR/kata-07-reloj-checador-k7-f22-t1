@@ -338,8 +338,8 @@ DEPENDENCIES
   chartkick
   cssbundling-rails (~> 1.1)
   debug
-  faker
   devise
+  faker
   groupdate
   importmap-rails
   jbuilder

@@ -15,7 +15,7 @@ end
 
   task employee: :environment do
     employee = rand(3)
-    100.times{
+    50.times{
       name = Faker::Name.name
       email = Faker::Internet.email
       branch = rand(1..Branch.count)

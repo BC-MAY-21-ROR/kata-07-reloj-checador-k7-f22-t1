@@ -28,7 +28,7 @@ class Record < ApplicationRecord
     day = day.to_datetime
     date_range = (day.midnight)..(day.midnight + 1.day - 1.second)
     employee = Employee.joins(:records, :role).select(
-      'employees.*, records.check_in as check_in, records.check_out as check_out, roles.description as position'
+      'employees.*, records.check_in as check_in, records.check_out as check_out, records.hours as hours, roles.description as position'
     ).where(
       employees: { branch_id: id_branch }, records: { check_in: date_range }
     )
@@ -37,8 +37,8 @@ class Record < ApplicationRecord
     employee
   end
 
-  def self.attendance_by_month!(_id_branch)
-    testD = Record.all.select(:hours, :check_out)
+  def self.attendance_by_month!(branch_id)
+    testD = Record.all.joins(:employee).select(:hours, :check_out).where(employee: { branch_id: branch_id })
     data = testD.group_by { |t| t.check_out.strftime('%B/%Y') }
     data.each do |key, value|
       average_hours = 0
