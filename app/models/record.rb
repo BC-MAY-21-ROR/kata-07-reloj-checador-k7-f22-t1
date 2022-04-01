@@ -19,7 +19,7 @@ class Record < ApplicationRecord
   def self.check_out!(record)
     current_time = Time.now
     hours = format('%.2f', ((current_time.to_time - record.check_in) / 1.hour))
-    check_out = update(record.id, check_out: current_time, hours: hours)
+    check_out = update(record.id, check_out: current_time, hours:)
     check_out.check_out.localtime
   end
 
@@ -32,7 +32,7 @@ class Record < ApplicationRecord
     ).where(
       employees: { branch_id: id_branch }, records: { check_in: date_range }
     )
-    employee = employee.where({ role_id: role_id}) if role_id.present?
+    employee = employee.where({ role_id: }) if role_id.present?
     employee = employee.where('name LIKE ?', "%#{sanitize_sql_like(name)}%") if name.present?
     employee
   end
@@ -48,5 +48,22 @@ class Record < ApplicationRecord
       end
     end
     data
+  end 
+  
+  def self.absence_by_month!(branch_id)
+    daysxd = 20 
+    branch = Branch.find(branch_id)
+    employees = branch.employees
+    records = []
+    employees.each {|employee| records << employee.records} 
+    # .group_by { |t| t.check_in.strftime('%B/%Y') }
+    expected_attendances = employees.count * daysxd
+    absences = Array.new(12) { expected_attendances }
+
+    records.each do |record|
+      absences[record.check_in.month - 1] -= 1
+    end
+
+    absences
   end
 end
