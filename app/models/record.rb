@@ -38,8 +38,8 @@ class Record < ApplicationRecord
   end
 
   def self.attendance_by_month!(branch_id)
-    testD = Record.all.joins(:employee).select(:hours, :check_out).where(employee: { branch_id: branch_id })
-    data = testD.group_by { |t| t.check_out.strftime('%B/%Y') }
+    records = Record.all.joins(:employee).select(:hours, :check_out).where(employee: { branch_id: branch_id })
+    data = records.group_by { |t| t.check_out.strftime('%B/%Y') }
     data.each do |key, value|
       average_hours = 0
       value.each_with_index do |i, _v|
