@@ -8,52 +8,6 @@
 @import "./branches/titles.scss";
 @import "./records/check.scss";
 @import "clock.sass.scss";
-@import "check_form.sass.scss";
 @import "navbar.sass.scss";
 @import "branches/show.scss";
-//body
-body {
-  background-color: $background-body;
-}
 
-//Form group style
-.form-group {
-  display: flex;
-  flex-wrap: wrap;
-  label {
-    width: 100%;
-    font-size: 18px;
-  }
-  input {
-    width: 100%;
-    height: 50px;
-    border-radius: $rounded;
-    border: none;
-    font-size: 18px;
-    box-shadow: $shadow;
-    -moz-appearance: textfield;
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-  }
-  p {
-    color: $grey-text;
-  }
-}
-.alert {
-  text-align: center;
-  margin-top: 1rem;
-  @import "application.bootstrap.scss";
-  @import "variables.sass.scss";
-  @import "button_colors.sass.scss";
-
-  .navbar-collapse {
-    justify-content: space-evenly;
-    padding-left: 13rem;
-  }
-  .nav-item {
-    margin: 0 2.5rem 0 2.5rem;
-  }
-}

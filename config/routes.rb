@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'admins/login'
+  devise_for :admins
   resources :employees
   resources :branches
   resources :records

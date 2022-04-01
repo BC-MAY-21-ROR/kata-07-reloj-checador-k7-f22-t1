@@ -2,6 +2,7 @@
 
 # class EmployeesController
 class EmployeesController < ApplicationController
+  before_action :authenticate_admin!
   before_action :new_form, only: %i[new edit]
   before_action :list_employees, only: %i[new index edit]
   before_action :find_employee, only: %i[edit update update_status]
