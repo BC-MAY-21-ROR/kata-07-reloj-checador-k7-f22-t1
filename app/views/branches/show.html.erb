@@ -5,10 +5,6 @@
   <div class="row">
     <div class="row mb-3">
       <div class="col-3">
-        <select class="form-select" aria-label="Default select example">
-          <option selected value="1">Attendance by day</option>
-          <option selected value="2 ">Absences by month</option>
-        </select>
       </div>
       <div class="col-5 mx-4">
         <h3 class="fs-2 fw-bold ml-4 dark-blue">
@@ -28,14 +24,6 @@
         <%= render partial: 'attendance_by_month' %>
     </div>
     <div class="col-5 d-flex justify-content-center">
-      <div class="w-100">
-        <div id="filter">
-          <%= render partial: 'branches/filter' %>
-        </div>
-        <div id="filter">
-          <%= render partial: 'absences_by_month' %>
-        </div>
-      </div>
       <div data-showhide-target="absence_by_month">
         <%= render partial: 'absence_by_month' %>
       </div>

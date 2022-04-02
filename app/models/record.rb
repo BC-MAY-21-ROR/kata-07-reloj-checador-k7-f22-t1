@@ -38,7 +38,7 @@ class Record < ApplicationRecord
   end
 
   def self.attendance_by_month!(branch_id)
-    records = Record.all.joins(:employee).select(:hours, :check_out).where(employee: { branch_id: branch_id })
+    records = Record.all.joins(:employee).select(:hours, :check_out).where(employee: { branch_id: })
     data = records.group_by { |t| t.check_out.strftime('%B/%Y') }
     data.each do |key, value|
       average_hours = 0
@@ -48,17 +48,19 @@ class Record < ApplicationRecord
       end
     end
     data
-  end 
-  
+  end
+
   def self.absence_by_month!(branch_id)
-    daysxd = 20
+    daysxd = 31
     branch = Branch.find(branch_id)
     employees = branch.employees
     expected_attendances = employees.count * daysxd
-    absences = Array.new(12) { expected_attendances }
+    absences = Hash.new() { expected_attendances }
+    puts absences
     employees.each do |employee|
       employee.records.each do |record|
-        absences[record.check_in.month - 1] -= 1
+        puts record.check_in.month
+        absences[Date::MONTHNAMES[record.check_in.month]] -= 1
       end
     end
     absences
