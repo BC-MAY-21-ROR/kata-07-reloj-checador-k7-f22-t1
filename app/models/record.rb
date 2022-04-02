@@ -51,19 +51,16 @@ class Record < ApplicationRecord
   end 
   
   def self.absence_by_month!(branch_id)
-    daysxd = 20 
+    daysxd = 20
     branch = Branch.find(branch_id)
     employees = branch.employees
-    records = []
-    employees.each {|employee| records << employee.records} 
-    # .group_by { |t| t.check_in.strftime('%B/%Y') }
     expected_attendances = employees.count * daysxd
     absences = Array.new(12) { expected_attendances }
-
-    records.each do |record|
-      absences[record.check_in.month - 1] -= 1
+    employees.each do |employee|
+      employee.records.each do |record|
+        absences[record.check_in.month - 1] -= 1
+      end
     end
-
     absences
   end
 end

@@ -4,6 +4,12 @@
   <hr />
   <div class="row">
     <div class="row mb-3">
+      <div class="col-3">
+        <select class="form-select" aria-label="Default select example">
+          <option selected value="1">Attendance by day</option>
+          <option selected value="2 ">Absences by month</option>
+        </select>
+      </div>
       <div class="col-5 mx-4">
         <h3 class="fs-2 fw-bold ml-4 dark-blue">
           Total Attendance <%= "#{@employees.size}/#{@attendance_total}" %>
