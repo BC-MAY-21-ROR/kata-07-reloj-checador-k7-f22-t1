@@ -47,7 +47,7 @@ class Record < ApplicationRecord
         data[key] = average_hours / value.length
       end
     end
-    data
+    data= data.to_a.reverse.to_h
   end
 
   def self.absence_by_month!(branch_id)
@@ -60,9 +60,9 @@ class Record < ApplicationRecord
     employees.each do |employee|
       employee.records.each do |record|
         puts record.check_in.month
-        absences[Date::MONTHNAMES[record.check_in.month]] -= 1
+        absences[Date::MONTHNAMES[record.check_in.month]] -= 1 unless record.check_in.month == Time.now.month
       end
     end
-    absences
+    absences=absences.to_a.reverse.to_h
   end
 end
