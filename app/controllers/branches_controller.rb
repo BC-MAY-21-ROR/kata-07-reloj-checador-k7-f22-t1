@@ -65,7 +65,6 @@ class BranchesController < ApplicationController
     @attendance_total = Employee.where({ branch_id: @branch }).count
     @employees = Record.search_by_day! params[:day], params[:role_id], params[:name], @branch
     @absence_by_month = Record.absence_by_month! @branch.id
-    puts "aaaaaaaaaaaaaaaaaaaaaaaaa"
     puts @absence_by_month
   end
 
