@@ -14,14 +14,17 @@
             <%else%>
               <li class="nav-item active">
                 <%= link_to 'Back to check in/out', new_record_path, class: 'btn btn-primary rounded-pill' %>
-              </li>  
+              </li>
             <% end %>
           <%else%>
             <li class="nav-item active">
               <%= link_to 'Employees', employees_path, class: 'nav-link bi bi-person rounded-pill' %>
             </li>
             <li class="nav-item">
-              <%= link_to 'Branches', branches_path, class: 'nav-link bi bi-shop'%> 
+              <%= link_to 'Branches', branches_path, class: 'nav-link bi bi-shop'%>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Roles', roles_path, class: 'nav-link bi bi-person-plus'%>
             </li>
             <li>
               <%= link_to 'Sign out', destroy_admin_session_path, 'data-turbo-method': :delete, class: 'btn btn-danger rounded-pill'%>

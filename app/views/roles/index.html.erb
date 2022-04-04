@@ -1,0 +1,38 @@
+<div class="container form-role row d-flex justify-content-center">
+  <h1>Roles</h1>
+</div>
+<div id="options" data-controller="visibility">
+  <div class="row m-5" data-visibility-target="button">
+    <button
+      class="btn btn-primary col-2 box ms-5 align-end"
+      data-action="visibility#toggleTargets"
+    >
+      + Add new role
+    </button>
+  </div>
+  <div data-visibility-target="hideable" hidden>
+    <%= render partial: "form"%>
+  </div>
+</div>
+<div class="container">
+  <div class="col-6">
+    <table class="table table-light table-hover box tex-align-center col-6">
+      <thead>
+        <tr>
+          <th class="text-center"># Role</th>
+          <th class="text-center">Description</th>
+		  <th class="text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%@roles.each do |role|%>
+        <tr>
+          <td class="text-center"><%=role.id%></td>
+          <td class="text-center"><%=role.description%></td>
+		  <td class="text-center"><%= link_to "Edit", edit_role_path(role.id), class: 'btn btn-green rounded-pill' %></td>
+        </tr>
+        <%end%>
+      </tbody>
+    </table>
+  </div>
+</div>
