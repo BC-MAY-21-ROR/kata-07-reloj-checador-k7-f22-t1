@@ -1,4 +1,4 @@
-<%= form_tag filter_path(@branch.id), method: :get, remote: true, class: 'filter' do %>
+<%= form_for filter_path, method: :get, remote: true, class: 'filter' do %>
   <div class="form-group w-75">
     <label>Filter by day</label>
     <%= date_field_tag :day, class:"form-date"%>

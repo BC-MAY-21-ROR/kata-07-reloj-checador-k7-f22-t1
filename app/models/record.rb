@@ -19,7 +19,7 @@ class Record < ApplicationRecord
   def self.check_out!(record)
     current_time = Time.now
     hours = format('%.2f', ((current_time.to_time - record.check_in) / 1.hour))
-    check_out = update(record.id, check_out: current_time, hours:)
+    check_out = update(record.id, check_out: current_time, hours:hours)
     check_out.check_out.localtime
   end
 
@@ -32,13 +32,17 @@ class Record < ApplicationRecord
     ).where(
       employees: { branch_id: id_branch }, records: { check_in: date_range }
     )
-    employee = employee.where({ role_id: }) if role_id.present?
+    puts "HERE"
+    puts role_id.present?
+    employee = employee.where({ role_id: role_id }) if role_id.present?
     employee = employee.where('name LIKE ?', "%#{sanitize_sql_like(name)}%") if name.present?
+    puts employee
     employee
   end
 
   def self.attendance_by_month!(branch_id)
-    records = Record.all.joins(:employee).select(:hours, :check_out).where(employee: { branch_id: })
+    
+    records = Record.all.joins(:employee).select(:hours, :check_out).where(employee: { branch_id: branch_id })
     data = records.group_by { |t| t.check_out.strftime('%B/%Y') }
     data.each do |key, value|
       average_hours = 0
@@ -51,16 +55,16 @@ class Record < ApplicationRecord
   end
 
   def self.absence_by_month!(branch_id)
-    daysxd = 31
     branch = Branch.find(branch_id)
     employees = branch.employees
-    expected_attendances = employees.count * daysxd
-    absences = Hash.new { expected_attendances }
-    puts absences
+    absences = Hash.new
     employees.each do |employee|
       employee.records.each do |record|
-        puts record.check_in.month
-        absences[Date::MONTHNAMES[record.check_in.month]] -= 1 unless record.check_in.month == Time.now.month
+        month = record.check_in.month
+        year = record.check_in.year
+        next if (month == Time.now.month )
+        absences[Date::MONTHNAMES[month]] = (Time.days_in_month(month, year)* employees.count) if absences[Date::MONTHNAMES[month]].nil?
+        absences[Date::MONTHNAMES[month]] -= 1
       end
     end
     absences = absences.to_a.reverse.to_h
