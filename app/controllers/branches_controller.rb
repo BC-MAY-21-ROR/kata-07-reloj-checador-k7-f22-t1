@@ -4,7 +4,7 @@
 class BranchesController < ApplicationController
   before_action :authenticate_admin!
   before_action :set_branch, only: %i[show edit update destroy]
-  before_action :attendance_branch, :attendance_by_month, :absences_by_month, only: [:show]
+  before_action :filter, :attendance_by_month, :absences_by_month, only: [:show]
 
   # GET /branches or /branches.json
   def index
@@ -13,7 +13,12 @@ class BranchesController < ApplicationController
   end
 
   # GET /branches/1 or /branches/1.json
-  def show; end
+  def show
+    puts "::::::::::"
+    puts "show"
+    puts params["day"]
+    puts "::::::::::"
+  end
 
   # GET /branches/new
   def new
@@ -40,9 +45,10 @@ class BranchesController < ApplicationController
 
   # PATCH/PUT /branches/1 or /branches/1.json
   def update
+    puts "UPDATEz"
     respond_to do |format|
       if @branch.update(branch_params)
-        format.html { redirect_to branch_url(@branch)}
+        format.html { redirect_to branch_url(@branch), notice: 'Branch was successfully upd.' }
         format.json { render :show, status: :ok, location: @branch }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -61,10 +67,12 @@ class BranchesController < ApplicationController
     end
   end
 
-  def attendance_branch
+  def filter
+    puts "::::::::::"
     puts "HERE 1"
-    puts params[:controller]
-    @attendance_total = Employee.where({ branch_id: @branch }).count
+    puts params
+    puts "::::::::::"
+    @attendance_total = Employee.where({ branch_id: 1 }).count
     @employees = Record.search_by_day! params[:day], params[:role_id], params[:name], @branch
   end
 
@@ -73,7 +81,7 @@ class BranchesController < ApplicationController
   end
 
   def attendance_by_month
-    @attendance_by_month = Record.attendance_by_month! @branch
+    @attendance_by_month = Record.attendance_by_month! @branch.id
   end
 
   private

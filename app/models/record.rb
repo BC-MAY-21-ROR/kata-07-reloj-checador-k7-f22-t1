@@ -33,17 +33,16 @@ class Record < ApplicationRecord
       employees: { branch_id: id_branch }, records: { check_in: date_range }
     )
     puts "HERE"
-    puts role_id.present?
     employee = employee.where({ role_id: role_id }) if role_id.present?
     employee = employee.where('name LIKE ?', "%#{sanitize_sql_like(name)}%") if name.present?
-    puts employee
     employee
   end
 
   def self.attendance_by_month!(branch_id)
-    
-    records = Record.all.joins(:employee).select(:hours, :check_out).where(employee: { branch_id: branch_id })
-    data = records.group_by { |t| t.check_out.strftime('%B/%Y') }
+    records = Record.all.joins(:employee).select(:hours, :check_out).where(employee: { branch_id: 2 }).where.not( check_out:[nil])
+    puts records
+    puts "records"
+    data = records.group_by { |t| t.check_out.strftime('%B/%Y')}
     data.each do |key, value|
       average_hours = 0
       value.each_with_index do |i, _v|
@@ -51,6 +50,7 @@ class Record < ApplicationRecord
         data[key] = average_hours / value.length
       end
     end
+    puts data
     data = data.to_a.reverse.to_h
   end
 
