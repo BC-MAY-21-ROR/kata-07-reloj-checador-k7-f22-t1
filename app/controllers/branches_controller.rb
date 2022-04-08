@@ -4,7 +4,7 @@
 class BranchesController < ApplicationController
   before_action :authenticate_admin!
   before_action :set_branch, only: %i[show edit update destroy]
-  before_action :filter, :attendance_by_month, :absences_by_month, only: [:show]
+  before_action :filter, :attendance_by_month, :absences_by_month, only: %i[show update]
 
   # GET /branches or /branches.json
   def index
@@ -14,10 +14,6 @@ class BranchesController < ApplicationController
 
   # GET /branches/1 or /branches/1.json
   def show
-    puts "::::::::::"
-    puts "show"
-    puts params["day"]
-    puts "::::::::::"
   end
 
   # GET /branches/new
@@ -45,7 +41,6 @@ class BranchesController < ApplicationController
 
   # PATCH/PUT /branches/1 or /branches/1.json
   def update
-    puts "UPDATEz"
     respond_to do |format|
       if @branch.update(branch_params)
         format.html { redirect_to branch_url(@branch), notice: 'Branch was successfully upd.' }
@@ -68,12 +63,8 @@ class BranchesController < ApplicationController
   end
 
   def filter
-    puts "::::::::::"
-    puts "HERE 1"
-    puts params
-    puts "::::::::::"
     @attendance_total = Employee.where({ branch_id: 1 }).count
-    @employees = Record.search_by_day! params[:day], params[:role_id], params[:name], @branch
+    @employees = Record.search_by_day! params[:day], params[:role_id], params[:name], params[:id]
   end
 
   def absences_by_month
@@ -88,7 +79,6 @@ class BranchesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_branch
-    puts params[:id]
     @branch = Branch.find(params[:id])
   end
 

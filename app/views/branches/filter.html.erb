@@ -1,4 +1,10 @@
-<div class="col-7 d-flex justify-content-center">
+<div class="container">
+<div class="row">
+  <div class="col-12">
+    <div id="filter" class=" d-flex flex-wrap justify-content-center"><%= render :partial => 'branches/filter' %></div>
+  </div>
+</div>
+
   <div class="w-100 table-attendance">
     <table
       class="col-6 table table-hover text-center shadow p-3 mb-5 rounded"
@@ -32,11 +38,5 @@
         <% end %>
       </tbody>
     </table>
-  </div>
-</div>
-<div class="col-5 d-flex justify-content-center">
-  <div class="w-100">
-  
-    <div id="filter" class=" d-flex flex-wrap justify-content-center"><%=link_to "Search specific Attendance", filter_branch_path, class:"btn btn-primary" %></div>
   </div>
 </div>
