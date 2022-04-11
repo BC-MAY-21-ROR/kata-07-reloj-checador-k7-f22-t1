@@ -7,7 +7,7 @@ class Employee < ApplicationRecord
   has_many :records
 
   def self.employee_by_number!(private_number)
-    employee = self.select(:id).where(private_number: private_number).first
+    employee = self.select(:id).where(private_number:private_number).first
     employee.id
   end
 
@@ -22,14 +22,14 @@ class Employee < ApplicationRecord
 
   def self.create_employee(params)
     name = params[:employee][:name].upcase
-    create(name: name, role_id: params['role'], email: params[:employee][:email],
+    create(name:name, role_id: params['role'], email: params[:employee][:email],
            branch_id: params['branch'], private_number: params[:employee][:private_number],
            status: true)
   end
 
   def update_employee(params)
     name = params[:employee][:name].upcase
-    update(name: name, role_id: params['role'], email: params[:employee][:email],
+    update(name:name, role_id: params['role'], email: params[:employee][:email],
            branch_id: params['branch'], private_number: params[:employee][:private_number])
   end
 end

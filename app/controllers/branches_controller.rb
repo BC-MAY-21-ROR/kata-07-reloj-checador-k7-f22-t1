@@ -13,8 +13,7 @@ class BranchesController < ApplicationController
   end
 
   # GET /branches/1 or /branches/1.json
-  def show
-  end
+  def show; end
 
   # GET /branches/new
   def new

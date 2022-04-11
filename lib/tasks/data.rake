@@ -10,7 +10,6 @@ task :data => :environment do
             check_in = Time.now.midnight-d.day+8.hours
             check_out = Time.now.midnight-d.day+hours.hours
             hours = ( check_out - check_in) / 1.hours
-            puts check_out
             Record.create! employee_id: e, check_in: check_in , check_out: check_out, hours: hours
             end}
 end

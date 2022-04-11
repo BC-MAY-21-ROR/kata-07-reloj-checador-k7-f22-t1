@@ -33,16 +33,14 @@ class Record < ApplicationRecord
       employees: { branch_id: id_branch }, records: { check_in: date_range }
     )
     employee = employee.where({ role_id: role_id }) if role_id.present?
-    if name.present?
-      nameField = Employee.arel_table[:name]
-      employee = employee.where("employees.name LIKE ?","%#{name}%")if name.present?
-    end
+    employee = employee.where('employees.name LIKE ?', "%#{name}%") if name.present?
     employee
   end
 
-  def self.attendance_by_month!(branch_id)
-    records = Record.all.joins(:employee).select(:hours, :check_out).where(employee: { branch_id: 2 }).where.not( check_out:[nil])
-    data = records.group_by { |t| t.check_out.strftime('%B/%Y')}
+  def self.attendance_by_month!(_branch_id)
+    records = Record.all.joins(:employee).select(:hours,
+                                                 :check_out).where(employee: { branch_id: 2 }).where.not(check_out: [nil])
+    data = records.group_by { |t| t.check_out.strftime('%B/%Y') }
     data.each do |key, value|
       average_hours = 0
       value.each_with_index do |i, _v|
@@ -56,13 +54,17 @@ class Record < ApplicationRecord
   def self.absence_by_month!(branch_id)
     branch = Branch.find(branch_id)
     employees = branch.employees
-    absences = Hash.new
+    absences = {}
     employees.each do |employee|
       employee.records.each do |record|
         month = record.check_in.month
         year = record.check_in.year
-        next if (month == Time.now.month )
-        absences[Date::MONTHNAMES[month]] = (Time.days_in_month(month, year)* employees.count) if absences[Date::MONTHNAMES[month]].nil?
+        next if month == Time.now.month
+
+        if absences[Date::MONTHNAMES[month]].nil?
+          absences[Date::MONTHNAMES[month]] =
+            (Time.days_in_month(month, year) * employees.count)
+        end
         absences[Date::MONTHNAMES[month]] -= 1
       end
     end
